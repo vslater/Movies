@@ -12,5 +12,6 @@ private:
 	void listFilmsByActor();
 	void listFilmInfo();
 	void addNewFilm();
+	void askStartingQuestion();
 };
 

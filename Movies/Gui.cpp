@@ -9,8 +9,16 @@
 
 Gui::Gui(Database db) : myDb(db)
 {
-	myDb.instruction("Select  * from Actors where Actors.id > 4");
-	
+	askStartingQuestion();
+}
+
+
+Gui::~Gui()
+{
+}
+
+void Gui::askStartingQuestion()
+{
 	std::cout << "What do you want to do?\n";
 	std::cout << "0 - List films by actor\n";
 	std::cout << "1 - List director and actors by film\n";
@@ -27,14 +35,13 @@ Gui::Gui(Database db) : myDb(db)
 	case 2:
 		addNewFilm();
 		break;
+	case 3:
+		std::cout << "\nGoodbye";
+		break;
 	dafault:
 		std::cout << "Try again";
 	}
-}
-
-
-Gui::~Gui()
-{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 //Database Gui::myDb = Database("C:\\SQLite\\Movies.db");
@@ -48,13 +55,16 @@ void Gui::listFilmsByActor(){
 	std::string end = "') and (Films.FilmID == Actor_Film_Mapping.FilmID) and (Actors.id == Actor_Film_Mapping.ActorID)";
 	std::string finalInstruction = start + actor + end;
 	myDb.instruction(finalInstruction);
-	//myDb.instruction("Select * from Actors");
-	//myDb.instruction("Select  * from Actors where Actors.id > 4");
 	myDb.printResults();
+	askStartingQuestion();
 }
 
 void Gui::listFilmInfo(){
-	std::cout << "Which film's information would you like\n?";
+	std::cout << "Which film's information would you like listed\n?";
+
+	std::string film;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::getline(std::cin, film);
 }
 
 void Gui::addNewFilm(){

@@ -30,6 +30,7 @@ int Database::instruction(std::string _instruction){
 
 void Database::printResults(){
 
+	std::cout << "\n";
 	int cols = sqlite3_column_count(statement);
 	int rowResult;
 	while (true){
