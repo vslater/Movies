@@ -1,0 +1,17 @@
+*.ipch
+*.exe
+*.dll
+*.ilk
+*.pdb
+*.def
+*.exp
+*.pdb
+*.lib
+*.sdf
+*.opensdf
+*.tlog
+*.obj
+*.suo
+*.pch
+*.idb
+*.log
