@@ -25,6 +25,7 @@ void Gui::askStartingQuestion()
 	std::cout << "2 - Add new film\n";
 	std::cout << "3 - Exit\n";
 	int answer = std::cin.get() - 48;
+	std::cout << "\n";
 	switch (answer){
 	case 0:
 		listFilmsByActor();
@@ -60,11 +61,18 @@ void Gui::listFilmsByActor(){
 }
 
 void Gui::listFilmInfo(){
-	std::cout << "Which film's information would you like listed\n?";
+	std::cout << "Which film's information would you like listed?\n";
 
 	std::string film;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::getline(std::cin, film);
+
+	std::string finalInstruction = "select Directors.Name from Films, Directors where (Films.Name == '" + film + "' and (Films.DirectorID == Directors.DirectorID))";
+	myDb.instruction(finalInstruction);
+	std::cout << "Director:";
+	myDb.printResults();
+	askStartingQuestion();
+
 }
 
 void Gui::addNewFilm(){
